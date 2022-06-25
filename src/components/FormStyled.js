@@ -18,16 +18,16 @@ export const FormControl = styled.div`
     font: inherit;
     padding: 0.5rem;
     border-radius: 4px;
-    border: 1px solid ${(props) => (props.inValid ? "#b40e0e" : "#ccc")};
-    background-color: ${(props) => props.inValid && "#fddddd"};
+    border: 1px solid ${(props) => (!props.isValid ? "#b40e0e" : "#ccc")};
+    background-color: ${(props) => !props.isValid && "#fddddd"};
     width: 20rem;
     max-width: 100%;
   }
 
   & input:focus {
     outline: none;
-    border-color: ${(props) => (props.inValid ? "#ff8800" : "#240370")};
-    background-color: ${(props) => (props.inValid ? "#fbe8d2" : "#e0d4fd")};
+    border-color: ${(props) => (!props.isValid ? "#ff8800" : "#240370")};
+    background-color: ${(props) => (!props.isValid ? "#fbe8d2" : "#e0d4fd")};
   }
 `;
 
@@ -59,4 +59,8 @@ export const Button = styled.button`
     background-color: #33059e;
     border-color: #33059e;
   }
+`;
+
+export const ErrorMsg = styled.p`
+  color: #b40e0e;
 `;
