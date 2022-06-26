@@ -18,16 +18,19 @@ export const FormControl = styled.div`
     font: inherit;
     padding: 0.5rem;
     border-radius: 4px;
-    border: 1px solid ${(props) => (!props.isValid ? "#b40e0e" : "#ccc")};
-    background-color: ${(props) => !props.isValid && "#fddddd"};
+    border: 1px solid
+      ${(props) => (props.isValid === false ? "#b40e0e" : "#ccc")};
+    background-color: ${(props) => props.isValid === false && "#fddddd"};
     width: 20rem;
     max-width: 100%;
   }
 
   & input:focus {
     outline: none;
-    border-color: ${(props) => (!props.isValid ? "#ff8800" : "#240370")};
-    background-color: ${(props) => (!props.isValid ? "#fbe8d2" : "#e0d4fd")};
+    border-color: ${(props) =>
+      props.isValid === false ? "#ff8800" : "#240370"};
+    background-color: ${(props) =>
+      props.isValid === false ? "#fbe8d2" : "#e0d4fd"};
   }
 `;
 
@@ -58,6 +61,15 @@ export const Button = styled.button`
   &:active {
     background-color: #33059e;
     border-color: #33059e;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    background-color: #ccc;
+    color: #000;
+    border-color: #ccc;
+    cursor: not-allowed;
   }
 `;
 
