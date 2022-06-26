@@ -11,15 +11,16 @@ import { FormControl, FormActions, Button, ErrorMsg } from "./FormStyled";
 */
 
 const SimpleInput = (props) => {
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(true);
+  const [enteredInput, setEnteredInput] = useState("");
+  const [inputIsValid, setInputIsValid] = useState(true);
+  const [inputIsFocused, setInputIsFocused] = useState();
 
   const inputRef = useRef();
 
   const inputChangeHandler = (event) => {
     // 🟡 -- using 'useState' --
     const enteredInput = event.target.value;
-    setEnteredName(enteredInput);
+    setEnteredInput(enteredInput);
   };
 
   const submitHandler = (event) => {
@@ -29,8 +30,8 @@ const SimpleInput = (props) => {
     ⭐ Because code in the browser can always be edited in the browser, so validating input in the browser is not reliable, just good for user experience.
     */
     //  ==== VALIDATION ====
-    if (enteredName.trim().length === 0) {
-      setEnteredNameIsValid(false);
+    if (enteredInput.trim().length === 0) {
+      setInputIsValid(false);
       inputRef.current.focus();
       return; // Don't execute rest of code
     }
@@ -41,23 +42,23 @@ const SimpleInput = (props) => {
     // inputRef.current.value = "";  // 👈  Not good practice when using React since we are directly manipulating the DOM here.
     // ------------------------
 
-    setEnteredNameIsValid(true);
-    console.log(enteredName);
-    setEnteredName("");
+    setInputIsValid(true);
+    console.log(enteredInput);
+    setEnteredInput("");
   };
 
   return (
     <form onSubmit={submitHandler}>
-      <FormControl isValid={enteredNameIsValid}>
+      <FormControl isValid={inputIsValid}>
         <label htmlFor="name">Your Name</label>
         <input
           ref={inputRef}
           type="text"
           id="name"
           onChange={inputChangeHandler}
-          value={enteredName}
+          value={enteredInput}
         />
-        {!enteredNameIsValid && <ErrorMsg>Please Enter a Valid Name!</ErrorMsg>}
+        {!inputIsValid && <ErrorMsg>Please Enter a Valid Name!</ErrorMsg>}
       </FormControl>
 
       <FormActions>
