@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import useInputValidation from "../hooks/useInputValidation";
+import useInputValidationReducer from "../hooks/useInputValidationReducer";
 import {
   FormControl,
   FormActions,
@@ -9,15 +9,18 @@ import {
   ErrorMsg,
 } from "./FormStyled";
 
+// ==================================================================
+
 const FormControlBasic = styled(FormControl)`
   min-width: 15rem;
   flex: 1;
 `;
+// ==================================================================
 
 const nameValidCondition = (enteredValue) => enteredValue.trim().length !== 0;
 const emailValidCondition = (enteredValue) => enteredValue.trim().includes("@");
 
-const BasicForm = (props) => {
+const BasicFormuseReducer = (props) => {
   const {
     enteredValue: enteredFirstName,
     valueIsValid: enteredFirstNameIsValid,
@@ -25,7 +28,7 @@ const BasicForm = (props) => {
     inputChangeHandler: firstNameChangeHandler,
     inputBlurHandler: firstNameBlurHandler,
     reset: resetFirstNameInput,
-  } = useInputValidation(nameValidCondition);
+  } = useInputValidationReducer(nameValidCondition);
 
   const {
     enteredValue: enteredLastName,
@@ -34,7 +37,7 @@ const BasicForm = (props) => {
     inputChangeHandler: lastNameChangeHandler,
     inputBlurHandler: lastNameBlurHandler,
     reset: resetLastNameInput,
-  } = useInputValidation(nameValidCondition);
+  } = useInputValidationReducer(nameValidCondition);
 
   const {
     enteredValue: enteredEmail,
@@ -43,7 +46,7 @@ const BasicForm = (props) => {
     inputChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = useInputValidation(emailValidCondition);
+  } = useInputValidationReducer(emailValidCondition);
 
   // ---------
   const formIsValid =
@@ -125,4 +128,4 @@ const BasicForm = (props) => {
   );
 };
 
-export default BasicForm;
+export default BasicFormuseReducer;

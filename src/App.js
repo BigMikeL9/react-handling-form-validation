@@ -1,5 +1,6 @@
 import SimpleInput from "./components/SimpleInput";
 import BasicForm from "./components/BasicForm";
+import BasicFormuseReducer from "./components/BasicFormReducer";
 import styled from "styled-components";
 
 const AppStyled = styled.div`
@@ -14,8 +15,9 @@ const AppStyled = styled.div`
 function App() {
   return (
     <AppStyled>
-      <SimpleInput />
+      {/* <SimpleInput /> */}
       {/* <BasicForm /> */}
+      <BasicFormuseReducer />
     </AppStyled>
   );
 }
